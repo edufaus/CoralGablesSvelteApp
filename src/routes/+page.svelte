@@ -75,7 +75,12 @@ import { onMount } from 'svelte';
   .then((inf) => {
     info = inf.Yelp
     answer = inf.Answer
-     setTimeout(()=>{loading = false; transloading = false;}, 50)
+      transloading = false
+    transloading = false
+     setTimeout(()=>{
+       transloading == false;
+       loading = false;
+     }, 50)
   })
   answer = ""
    }
@@ -85,13 +90,13 @@ import { onMount } from 'svelte';
   <div class="hero-content text-center">
     <br>
        <div class="max-w-md">
-         {#if translateon}
-<button class="btn btn-sm {disabled}" on:click={translate}>Translate  🌍</button>
-         {/if}
-          {#if transloading}
+           {#if transloading == true}
     <progress class="progress w-56"></progress>
          {/if}
 <br>
+         {#if translateon}
+<button class="btn btn-sm {disabled}" on:click={translate}>Translate  🌍</button>
+         {/if}
          <br>
          {#if app == true}
 	<div >
