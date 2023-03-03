@@ -59,7 +59,10 @@ import { onMount } from 'svelte';
   .then((inf) => {
     text = inf
     console.log(text)
-    setTimeout(() => disabled = "", 400)
+    setTimeout(() => {
+      disabled = "";
+      transloading = true;
+                     }, 400)
   })
   }
    async function getAnswer() {
@@ -75,12 +78,7 @@ import { onMount } from 'svelte';
   .then((inf) => {
     info = inf.Yelp
     answer = inf.Answer
-      transloading = false
-    transloading = false
-     setTimeout(()=>{
-       transloading == false;
-       loading = false;
-     }, 50)
+     setTimeout(()=>{loading = false;}, 50)
   })
   answer = ""
    }
@@ -90,13 +88,13 @@ import { onMount } from 'svelte';
   <div class="hero-content text-center">
     <br>
        <div class="max-w-md">
-           {#if transloading == true}
-    <progress class="progress w-56"></progress>
-         {/if}
-<br>
          {#if translateon}
 <button class="btn btn-sm {disabled}" on:click={translate}>Translate  🌍</button>
          {/if}
+          {#if transloading}
+    <progress class="progress w-56"></progress>
+         {/if}
+<br>
          <br>
          {#if app == true}
 	<div >
